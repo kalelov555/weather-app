@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Weather App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/css/styles.css">
+
+        <!-- Fonts Awesome -->
+        <script src="https://kit.fontawesome.com/54232dfb0e.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <container class="left-container">
+            <div class="left-top">
+                <button class="search-btn">Search for places</button>
+                <button><i class="fas fa-compass"></i></button>
+            </div>
+            <img src="" alt="Weather">
+            <h1>{XC}</h1>
+            <h3>{Desc}</h3>
+            <div class="today-date">
+                <p class="today">Today</p>
+                <p class="today">{Date}</p>
+            </div>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> {Location}</p>
+
+            <container class="search-box">
+                <form action="/" method="POST">
+                    <input type="text" name="cityName" class="city-input">
+                    <button class="city-btn" >Search</button>
+                </form>
+            </container>
+        </container>
+
+        <container class="right-container">
+            <container class="right-top-container">
+                <div class="temp-choices">
+                    <div class="degree celcius">°C</div>
+                    <div class="degree farengheit">°F</div>
+                </div>
+
+                <div class="5days">
+                    <div class="aday">
+                        <h1>{date}</h1>
+                        <img src="" alt="desc">
+                        <p>{16C     11C}</p>
+                    </div>
+
+                    <div class="aday">
+                        <h1>{date}</h1>
+                        <img src="" alt="desc">
+                        <p>{16C 11C}</p>
+                    </div>
+
+                    <div class="aday">
+                        <h1>{date}</h1>
+                        <img src="" alt="desc">
+                        <p>{16C 11C}</p>
+                    </div>
+
+                    <div class="aday">
+                        <h1>{date}</h1>
+                        <img src="" alt="desc">
+                        <p>{16C 11C}</p>
+                    </div>
+
+                    <div class="aday">
+                        <h1>{date}</h1>
+                        <img src="" alt="desc">
+                        <p>{16C 11C}</p>
+                    </div>
+                </div>
+            </container>
+
+            <container class="right-bottom-container">
+                <h1 class="big-heading">Today's Highlights</h1>
+
+                <div>
+                    <p>Wind status</p>
+                    <h1>{mph}</h1>
+                    <p><i class="fas fa-location-arrow"></i> {WSW}</p>
+                </div>
+
+                <div>
+                    <p>Humidity</p>
+                    <h1>{%}</h1>
+                    <div class="bar-container">
+                        <div class="bar-top">
+                            <p>0</p>
+                            <p>50</p>
+                            <p>100</p>
+                        </div>
+
+                        <div class="bar">
+                            <div class="colored-bar"></div>
+                        </div>
+                        <p>%</p>
+                    </div>
+
+                    <div>
+                        <p>Visibility</p>
+                        <h1>{miles}</h1>
+                    </div>
+
+                    <div>
+                        <p>Air pressure</p>
+                        <h1>{mb}</h1>
+                    </div>
+                </div>
+            </container>
+        </container>
+
+        <script src="/js/index.js"></script>
+    </body>
+</html>
