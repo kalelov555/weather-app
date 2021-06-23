@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const https = require('https');
 const fetch = require('node-fetch');
+const dateformat = require('dateformat')
 
 const app = express();
 
@@ -12,8 +12,16 @@ app.use(express.static("public"));
 
 
 app.get('/', function(req, res) {
-    res.render('index')
+    const url = "https://www.metaweather.com/api/location/44418";
+    fetch(url)
+        .then(res => res.json())
+        .then(wdata => {
+            let todaysDate = wdata.consolidated_weather[1].applicable_date;
+            todaysDate = dateformat(todaysDate, "ddd d, mmm");
+            res.render('index',{wdata: wdata, todaysDate: todaysDate})
+        })
 })
+
 
 app.post('/', function(req, res) {
     const url = "https://www.metaweather.com/api/location/search/?query=" + req.body.cityName;
@@ -22,7 +30,11 @@ app.post('/', function(req, res) {
         .then(json =>
             fetch("https://www.metaweather.com/api/location/" + json[0].woeid)
                 .then(response => response.json())
-                .then(wdata => console.log(wdata))
+                .then(wdata => {
+                    let todaysDate = wdata.consolidated_weather[1].applicable_date;
+                    todaysDate = dateformat(todaysDate, "ddd d, mmm");
+                    res.render('index', { wdata: wdata, todaysDate: todaysDate})
+                })
         );
 })
 

@@ -7,35 +7,48 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- Fonts Awesome -->
         <script src="https://kit.fontawesome.com/54232dfb0e.js" crossorigin="anonymous"></script>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
+            rel="stylesheet">
+
     </head>
     <body>
-        <container class="left-container">
+        <div class="left-container">
             <div class="left-top">
                 <button class="search-btn">Search for places</button>
-                <button><i class="fas fa-compass"></i></button>
+                <button class="myLocation-btn"><i class="fas fa-compass"></i></button>
             </div>
-            <img src="" alt="Weather">
-            <h1>{XC}</h1>
-            <h3>{Desc}</h3>
-            <div class="today-date">
+            <div class="img-div">
+                <img class="todays-img" src="./images/<%= wdata.consolidated_weather[0].weather_state_name %>.png" alt="Weather">
+            </div>
+            <h1 class="todays-temp"><%= wdata.consolidated_weather[0].the_temp %><span class="todays-celcius">°C</span></h1>
+            <h3 class="todays-desc"><%= wdata.consolidated_weather[0].weather_state_name %></h3>
+            <div class="todays-date">
                 <p class="today">Today</p>
-                <p class="today">{Date}</p>
+                <p>-</p>
+                <p class="today"><%= todaysDate %></p>
             </div>
-            <p class="location"><i class="fas fa-map-marker-alt"></i> {Location}</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i>  <%= wdata.title %></p>
 
-            <container class="search-box">
-                <form action="/" method="POST">
-                    <input type="text" name="cityName" class="city-input">
-                    <button class="city-btn" >Search</button>
+            <div class="search-box">
+                <div class="search-top"><i class="fas fa-times"></i></div>
+                <form id="search-form" action="/" method="POST">
+                    <input type="text" name="cityName" class="city-input" placeholder="🔎 search locations...">
+                    <button class="city-btn btn btn-primary" >Search</button>
                 </form>
-            </container>
-        </container>
+            </div>
+        </div>
 
-        <container class="right-container">
-            <container class="right-top-container">
+        <div class="right-container">
+            <div class="right-top-container">
                 <div class="temp-choices">
                     <div class="degree celcius">°C</div>
                     <div class="degree farengheit">°F</div>
@@ -72,9 +85,9 @@
                         <p>{16C 11C}</p>
                     </div>
                 </div>
-            </container>
+            </div>
 
-            <container class="right-bottom-container">
+            <div class="right-bottom-container">
                 <h1 class="big-heading">Today's Highlights</h1>
 
                 <div>
@@ -109,8 +122,10 @@
                         <h1>{mb}</h1>
                     </div>
                 </div>
-            </container>
-        </container>
+            </div>
+        </div>
+
+        <div class="clear"></div>
 
         <script src="/js/index.js"></script>
     </body>
