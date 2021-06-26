@@ -18,7 +18,13 @@ app.get('/', function(req, res) {
         .then(wdata => {
             let todaysDate = wdata.consolidated_weather[1].applicable_date;
             todaysDate = dateformat(todaysDate, "ddd d, mmm");
-            res.render('index',{wdata: wdata, todaysDate: todaysDate})
+
+            const fiveDays =[]
+            for(var i=2; i<6; i++) {
+                let aday = dateformat(wdata.consolidated_weather[i].applicable_date, "ddd d, mmm");
+                fiveDays.push(aday)
+            }
+            res.render('index',{wdata: wdata, todaysDate: todaysDate, fiveDays: fiveDays})
         })
 })
 
@@ -33,13 +39,19 @@ app.post('/', function(req, res) {
                 .then(wdata => {
                     let todaysDate = wdata.consolidated_weather[1].applicable_date;
                     todaysDate = dateformat(todaysDate, "ddd d, mmm");
-                    res.render('index', { wdata: wdata, todaysDate: todaysDate})
+                    
+                    const fiveDays = []
+                    for (var i = 2; i < 6; i++) {
+                        let aday = dateformat(wdata.consolidated_weather[i].applicable_date, "ddd d, mmm");
+                        fiveDays.push(aday)
+                    }
+                    res.render('index', { wdata: wdata, todaysDate: todaysDate, fiveDays: fiveDays })
                 })
         );
 })
 
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log("Server is running on port 3000");
 })
