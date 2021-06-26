@@ -26,7 +26,7 @@ let allCities = [];
 //         }
 //     });
 
-fetch("https://www.metaweather.com/api/location/search/?query=a")
+fetch("https://www.metaweather.com/api/location/search/?query=a", {mode: no-cors})
     .then(res => res.json())
     .then(data => {
         data.forEach(element => {
