@@ -114,41 +114,32 @@
             <div class="right-bottom-container">
                 <h1 class="big-heading">Today's Highlights</h1>
 
+                <% const status = Math.ceil(wdata.consolidated_weather[0].wind_speed *100) / 100; %>
+                <% const humidity = wdata.consolidated_weather[0].humidity; %>
+                <% const visibility = Math.ceil(wdata.consolidated_weather[0].visibility *100) / 100;; %>
+                <% const airPressure = wdata.consolidated_weather[0].air_pressure; %>
+
+
                 <div class="row">
-                <div class="col-md-5 features one">
-                    <p>Wind status</p>
-                    <h1>{mph}</h1>
-                    <p><i class="fas fa-location-arrow"></i> {WSW}</p>
+                <div class="mt-md-4 col-md-5 features one">
+                    <p class="feat-desc">Wind status</p>
+                    <h1 class="feat-num"><%= status %><p class="feat-unit ml-md-1">mph</p></h1>
                 </div>
 
-                <div class="col-md-5 offset-2 features two">
-                    <p>Humidity</p>
-                    <h1>{%}</h1>
-                    <div class="bar-container">
-                        <div class="bar-top">
-                            <p>0</p>
-                            <p>50</p>
-                            <p>100</p>
-                        </div>
+                <div class="mt-md-4 col-md-5 offset-2 features two">
+                    <p class="feat-desc">Humidity</p>
+                    <h1 class="feat-num"><%= humidity %><p class="feat-unit ml-md-1">%</p></h1>
+                    
+                </div>
 
-                        <div class="bar">
-                            <div class="colored-bar"></div>
-                        </div>
-                        <p>%</p>
-                    </div>
+                    <div class="mt-md-5 col-md-5 features three">
+                        <p class="feat-desc">Visibility</p>
+                        <h1 class="feat-num"><%= visibility %><p class="feat-unit ml-md-1">miles</p></h1>
                     </div>
 
-                    <div class="row">
-
-                    <div class="col-md-5 features three">
-                        <p>Visibility</p>
-                        <h1>{miles}</h1>
-                    </div>
-
-                    <div class="col-md-5 offset-2 features four">
-                        <p>Air pressure</p>
-                        <h1>{mb}</h1>
-                    </div>
+                    <div class="mt-md-5 col-md-5 offset-2 features four">
+                        <p class="feat-desc">Air pressure</p>
+                        <h1 class="feat-num"><%= airPressure %><p class="feat-unit ml-md-1">mb</p></h1>
                     </div>
                 </div>
             </div>

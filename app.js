@@ -10,19 +10,20 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
+
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+    next()
+  });
 
 
 app.get('/', function(req, res) {
     const url = "https://www.metaweather.com/api/location/44418";
     fetch(url)
-        .then(res => res.json())
+        .then(resp => resp.json())
         .then(wdata => {
             let todaysDate = wdata.consolidated_weather[1].applicable_date;
             todaysDate = dateformat(todaysDate, "ddd d, mmm");
@@ -40,10 +41,16 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
     const url = "https://www.metaweather.com/api/location/search/?query=" + req.body.cityName;
     fetch(url)
-        .then(res => res.json())
-        .then(json =>
+        .then(resp => resp.json())
+        .then(json =>  {
+            console.log(json);
+            if(Object.keys(json).length === 0) {
+                res.render('error')
+                return;
+            }
             fetch("https://www.metaweather.com/api/location/" + json[0].woeid)
                 .then(response => response.json())
+                .catch(error => console.log(error))
                 .then(wdata => {
                     let todaysDate = wdata.consolidated_weather[1].applicable_date;
                     todaysDate = dateformat(todaysDate, "ddd d, mmm");
@@ -55,8 +62,11 @@ app.post('/', function(req, res) {
                     }
                     res.render('index', { wdata: wdata, todaysDate: todaysDate, fiveDays: fiveDays })
                 })
+                .catch(err => console.log(err))
+             }
         );
 })
+
 
 
 

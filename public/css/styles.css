@@ -64,7 +64,7 @@ body {
     float: left;
     width: 30%;
     text-align: center;
-    height: 100vh;
+    height: 120vh;
     position: relative;
 }
 
@@ -102,7 +102,7 @@ body {
 	box-shadow:inset 0px 1px 3px 0px #91b8b3;
 	background:linear-gradient(to bottom, #9fa6a4 5%, #6c7c7c 100%);
 	background-color:#9fa6a4;
-	border-radius: 100%;
+	border-radius: 50%;
 	border: none;
 	display:inline-block;
 	cursor:pointer;
@@ -177,6 +177,7 @@ body {
     background-color: #100e1d;
     float: right;
     width: 70%;
+    height: 120vh;
 }
 
 .right-top-container {
@@ -188,8 +189,8 @@ body {
 }
  .degree {
     display: inline-block;
-    padding: 1%;
-    border-radius: 100%;
+    padding: 10px;
+    border-radius: 50%;
     margin: 0 1%;
 }
 .celcius {
@@ -237,7 +238,34 @@ body {
 }
 
 .features {
+    background-color: #1e213a;
+    border-radius: 10px;
+    display: inline-block;
     padding: 3%; 
+    text-align: center;
+}
+
+.feat-desc {
+    font-size: 1.2rem;
+}
+
+.feat-num {
+    font-size: 3rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.feat-unit {
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.bar-top {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
 }
 
 

@@ -26,13 +26,7 @@ let allCities = [];
 //         }
 //     });
 
-fetch("https://www.metaweather.com/api/location/search/?query=a", {mode: 'no-cors'})
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(element => {
-            allCities.push(element.title);
-        });
-    });
+
 
     console.log(allCities);
 
@@ -42,16 +36,37 @@ search.addEventListener('input', function(e) {
     matchList.innerHTML = "";
     console.log(e.target.value);
 
+    fetch("https://www.metaweather.com/api/location/search/?query=" + e.target.value, {
+        mode: 'no-cors'
+    })
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(element => {
+            allCities.push(element.title);
+        });
+    });
+
     if(e.target.value) {
     sugCities = allCities.filter(city => city.toLowerCase().includes(e.target.value))
 
     console.log(sugCities);
     }
 
-    for(var i=0; i<3; i++) {
-        const div = document.createElement('div');
-        div.innerHTML = sugCities[i];
-        div.classList.add("match-els-style");
-        matchList.appendChild(div);
+    if(sugCities.length >3) {
+        for(var i=0; i<3; i++) {
+            const div = document.createElement('div');
+            div.innerHTML = sugCities[i];
+            div.classList.add("match-els-style");
+            matchList.appendChild(div);
+        }
+    }
+
+    else {
+        for(var i=0; i<sugCities.length; i++) {
+            const div = document.createElement('div');
+            div.innerHTML = sugCities[i];
+            div.classList.add("match-els-style");
+            matchList.appendChild(div);
+        }
     }
 })
