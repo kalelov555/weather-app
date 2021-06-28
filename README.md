@@ -4,7 +4,7 @@ Project lets you to type city name and get its Weather data with 5 days forecast
 
 Front was built:
 -Pure JS
--HTML5
+-EJS template
 -CSS
 -Bootstrap 
 
