@@ -1,6 +1,6 @@
 # weather-app
 This is challenge from https://devchallenges.io/ 
-Project lets you to type city name and get its Weather data with 5 days forecast
+Project lets you to type city name and get its Weather data with 5 days forecast. Initial city displayed as London.
 
 Front was built:
 -Pure JS
